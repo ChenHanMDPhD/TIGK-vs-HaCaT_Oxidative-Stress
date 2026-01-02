@@ -86,7 +86,9 @@ ggplot(pcaData2, aes(x = PC1, y = PC2,shape = pcaData2$exp.group, colour = pcaDa
   scale_shape_manual(values = scale_map$shape, labels = scale_map$name,
                      name = "Samples") + xlab("PC1 (89.7%)") + ylab("PC2 (8.8%)")+
   theme(axis.title.x=element_text(size = 15), axis.title.y=element_text(size = 15), axis.text.x=element_text(size = 15), axis.text.y=element_text(size = 15), 
-        legend.text = element_text(size=12))
+        legend.text = element_text(size=12))+
+  scale_y_continuous(labels = ~sub("-", "\u2212", .x))+
+  scale_x_continuous(labels = ~sub("-", "\u2212", .x)) 
 
 # Generating averaged correlation matrix ####
 colnames(counts.H2O2)
@@ -321,7 +323,9 @@ ggplot(data=res.HvsT.Ctrl, aes(x=log2FoldChange, y=-log10(padj), col=diffexpress
         legend.text = element_text(size=20), legend.title = element_blank(), panel.background = element_rect(fill = 'white'),
         panel.grid.major = element_line(color = "grey", linewidth = 0.25),panel.grid.minor = element_line(color = "grey", linewidth = 0.25) )+
   geom_point(aes(colour=diffexpressed, fill=diffexpressed), size = 5, alpha = 1, shape = 21,colour = "black") + 
-  geom_vline(xintercept=c(0), col="red", linewidth = 3) +   geom_hline(yintercept=-log10(0.01), col="red", linewidth = 3) 
+  geom_vline(xintercept=c(0), col="red", linewidth = 3) +   geom_hline(yintercept=-log10(0.01), col="red", linewidth = 3)+
+  scale_y_continuous(labels = ~sub("-", "\u2212", .x))+
+  scale_x_continuous(labels = ~sub("-", "\u2212", .x))  
 
 #H2O2 Treated Control Comparisons
 res.HvsT.H2O2$diffexpressed <- "No Differential Expression"
@@ -334,7 +338,9 @@ ggplot(data=res.HvsT.H2O2, aes(x=log2FoldChange, y=-log10(padj), col=diffexpress
         legend.text = element_text(size=20), legend.title = element_blank(), panel.background = element_rect(fill = 'white'),
         panel.grid.major = element_line(color = "grey", linewidth = 0.25),panel.grid.minor = element_line(color = "grey", linewidth = 0.25) )+
   geom_point(aes(colour=diffexpressed, fill=diffexpressed), size = 5, alpha = 1, shape = 21,colour = "black") + 
-  geom_vline(xintercept=c(0), col="red", linewidth = 3) +   geom_hline(yintercept=-log10(0.01), col="red", linewidth = 3) 
+  geom_vline(xintercept=c(0), col="red", linewidth = 3) +   geom_hline(yintercept=-log10(0.01), col="red", linewidth = 3)+
+  scale_y_continuous(labels = ~sub("-", "\u2212", .x))+
+  scale_x_continuous(labels = ~sub("-", "\u2212", .x))  
 
 #H202 vs Untreated: HaCaT
 res.H2O2vsCtrl.HaCaT$diffexpressed <- "No Differential Expression"
@@ -347,7 +353,9 @@ ggplot(data=res.H2O2vsCtrl.HaCaT, aes(x=log2FoldChange, y=-log10(padj), col=diff
         legend.text = element_text(size=20), legend.title = element_blank(), panel.background = element_rect(fill = 'white'),
         panel.grid.major = element_line(color = "grey", linewidth = 0.25),panel.grid.minor = element_line(color = "grey", linewidth = 0.25) )+
   geom_point(aes(colour=diffexpressed, fill=diffexpressed), size = 5, alpha = 1, shape = 21,colour = "black") + 
-  geom_vline(xintercept=c(0), col="red", linewidth = 3) +   geom_hline(yintercept=-log10(0.01), col="red", linewidth = 3) 
+  geom_vline(xintercept=c(0), col="red", linewidth = 3) +   geom_hline(yintercept=-log10(0.01), col="red", linewidth = 3)+
+  scale_y_continuous(labels = ~sub("-", "\u2212", .x))+
+  scale_x_continuous(labels = ~sub("-", "\u2212", .x))  
 
 #H202 vs Untreated: TIGK
 res.H2O2vsCtrl.TIGK$diffexpressed <- "No Differential Expression"
@@ -360,7 +368,9 @@ ggplot(data=res.H2O2vsCtrl.TIGK, aes(x=log2FoldChange, y=-log10(padj), col=diffe
         legend.text = element_text(size=20), legend.title = element_blank(), panel.background = element_rect(fill = 'white'),
         panel.grid.major = element_line(color = "grey", linewidth = 0.25),panel.grid.minor = element_line(color = "grey", linewidth = 0.25) )+
   geom_point(aes(colour=diffexpressed, fill=diffexpressed), size = 5, alpha = 1, shape = 21,colour = "black") + 
-  geom_vline(xintercept=c(0), col="red", linewidth = 3) +   geom_hline(yintercept=-log10(0.01), col="red", linewidth = 3) 
+  geom_vline(xintercept=c(0), col="red", linewidth = 3) +   geom_hline(yintercept=-log10(0.01), col="red", linewidth = 3)+
+  scale_y_continuous(labels = ~sub("-", "\u2212", .x))+
+  scale_x_continuous(labels = ~sub("-", "\u2212", .x))  
 
 # Acquiring list of DEGs using p.adj < 0.01 as cutoff (Cutoff 1)####
 HvsT.Ctrl<-res.HvsT.Ctrl%>%filter(padj <  0.01)
